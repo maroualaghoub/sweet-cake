@@ -39,7 +39,7 @@
     const productsGrid = document.getElementById('productsGrid');
     
     if (!productsGrid) {
-      console.warn('❌ Element #productsGrid non trouvé dans le HTML');
+      console.warn(' Element #productsGrid non trouvé dans le HTML');
       return;
     }
     
@@ -79,7 +79,7 @@
         productsGrid.appendChild(card);
       });
       
-      console.log(`✅ ${products.length} produits chargés depuis le backend`);
+      console.log(` ${products.length} produits chargés depuis le backend`);
       
     } catch (error) {
       console.error('Erreur de chargement des produits:', error);
@@ -149,7 +149,7 @@
     const productId = parseInt(button.dataset.productId);
     
     if (!productId) {
-      alert('❌ Erreur: ID du produit non trouvé');
+      alert(' Erreur: ID du produit non trouvé');
       return;
     }
     
@@ -198,13 +198,13 @@
     })
     .then((data) => {
       if (data.order) {
-        alert(`✅ Commande enregistrée !\n\nProduit : ${data.order.productName}\nQuantité : ${data.order.quantity}\nTotal : ${data.order.total} DA\n\nMerci ${data.order.customerName} !\n\n📧 Un email de confirmation vous a été envoyé.`);
+        alert(` Commande enregistrée !\n\nProduit : ${data.order.productName}\nQuantité : ${data.order.quantity}\nTotal : ${data.order.total} DA\n\nMerci ${data.order.customerName} !\n\n📧 Un email de confirmation vous a été envoyé.`);
       } else {
-        alert('❌ ' + (data.message || 'Erreur inconnue'));
+        alert(' ' + (data.message || 'Erreur inconnue'));
       }
     })
     .catch((err) => {
-      alert(`❌ Erreur: ${err.message || 'Connexion au serveur impossible. Vérifiez que le backend est lancé sur http://localhost:5000'}`);
+      alert(` Erreur: ${err.message || 'Connexion au serveur impossible. Vérifiez que le backend est lancé sur http://localhost:5000'}`);
       console.error('Erreur détaillée:', err);
     })
     .finally(() => {
@@ -234,7 +234,7 @@
       if (!message.value.trim()) errors.push('Veuillez entrer un message.');
 
       if (errors.length > 0) {
-        alert('❌ ' + errors.join('\n'));
+        alert(' ' + errors.join('\n'));
         return;
       }
 
@@ -264,11 +264,11 @@
         return data;
       })
       .then((data) => {
-        alert('✅ ' + data.message);
+        alert(' ' + data.message);
         contactForm.reset();
       })
       .catch((err) => {
-        alert('❌ Erreur: ' + err.message);
+        alert(' Erreur: ' + err.message);
         console.error('Erreur détaillée:', err);
       })
       .finally(() => {
@@ -291,7 +291,6 @@
           const currentId = entry.target.id;
           navLinks.forEach(link => {
             link.classList.remove('active');
-            // ✅ CORRECTION : ajout des backticks ` pour le template string
             if (link.getAttribute('href') === `#${currentId}`) {
               link.classList.add('active');
             }
@@ -330,11 +329,11 @@
       return res.json();
     })
     .then((data) => {
-      console.log('✅ Backend connecté :', data);
+      console.log(' Backend connecté :', data);
     })
     .catch((err) => {
-      console.warn('⚠️ Backend non disponible:', err.message);
-      console.warn('💡 Vérifiez que le serveur est lancé avec "npm run dev" dans le dossier backend');
+      console.warn(' Backend non disponible:', err.message);
+      console.warn(' Vérifiez que le serveur est lancé avec "npm run dev" dans le dossier backend');
     });
 
   // Charger les produits au démarrage
