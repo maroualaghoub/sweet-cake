@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Cake - Pâtisserie</title>
+  <meta name="description" content="Sweet Cake - Les meilleurs gâteaux de la ville" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER FIXE ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <i class="fas fa-cake-candles"></i> Sweet Cake
+      </a>
+
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
+        <a href="#accueil" class="nav__link active">Accueil</a>
+        <a href="#produits" class="nav__link">Produits</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="accueil" class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__badge">✨ Artisanat depuis 2020</span>
+        <h1 class="hero__title">Sweet Cake</h1>
+        <p class="hero__subtitle">Les meilleurs gâteaux de la ville</p>
+        <p class="hero__description">
+          Des créations uniques, faites avec des ingrédients frais et beaucoup d'amour.
+          L'art de la pâtisserie à votre porte.
+        </p>
+        <div class="hero__actions">
+          <a href="#produits" class="btn btn--primary">
+            <i class="fas fa-utensils"></i> Découvrir nos gâteaux
+          </a>
+          <a href="#contact" class="btn btn--outline">
+            <i class="fas fa-envelope"></i> Nous contacter
+          </a>
+        </div>
+      </div>
+      <div class="hero__illustration">
+        <div class="hero__circle">
+          <i class="fas fa-cake-candles"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUITS ===== -->
+<section id="produits" class="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-header__tag">Nos spécialités</span>
+      <h2 class="section-header__title">Nos gâteaux</h2>
+      <p class="section-header__subtitle">
+        Chaque création est une œuvre d'art à déguster sans modération
+      </p>
+    </div>
+
+    <!-- Le conteneur où on va injecter les produits -->
+    <div class="products__grid" id="productsGrid">
+      <!-- Les produits seront ajoutés ici par JavaScript -->
+    </div>
+  </div>
+</section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__tag">On se dit bonjour ?</span>
+        <h2 class="section-header__title">Contactez-nous</h2>
+        <p class="section-header__subtitle">
+          Une question, une commande spéciale ? On est là pour vous !
+        </p>
+      </div>
+
+      <div class="contact__inner">
+        <!-- ✅ Formulaire avec LABELS (accessibilité) -->
+        <form class="contact__form" id="contactForm" novalidate>
+          <div class="contact__form-group">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" name="name" placeholder="Jean Dupont" required />
+          </div>
+          <div class="contact__form-group">
+            <label for="email">Votre email</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
+          </div>
+          <div class="contact__form-group contact__form-group--full">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" placeholder="Bonjour, je souhaiterais..." rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">
+            <i class="fas fa-paper-plane"></i> Envoyer
+          </button>
+        </form>
+
+        <div class="contact__info">
+          <div class="contact__info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Adresse</strong>
+              <p>Alger Centre </p>
+            </div>
+          </div>
+          <div class="contact__info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Téléphone</strong>
+              <p>+213 0557748617</p>
+            </div>
+          </div>
+          <div class="contact__info-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Horaires</strong>
+              <p>Dim - JEU : 8h00 - 19h30</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="footer__logo">
+          <i class="fas fa-cake-candles"></i> Sweet Cake
+        </a>
+        <p class="footer__tagline">
+          L'art de la pâtisserie, livré avec passion.
+        </p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Navigation secondaire">
+        <a href="#accueil">Accueil</a>
+        <a href="#produits">Produits</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 Sweet Cake. Tous droits réservés.</p>
+        <div class="footer__legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

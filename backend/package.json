@@ -1,0 +1,19 @@
+{
+  "name": "sweet-cake-backend",
+  "version": "1.0.0",
+  "description": "Backend API pour le site Sweet Cake",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "express": "^4.22.2",
+    "nodemailer": "^9.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Sweet Cake</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --color-primary: #D9778E;
+            --color-primary-dark: #B85C74;
+            --color-dark: #2D1B1A;
+            --color-bg: #FEFCFB;
+            --radius: 16px;
+            --shadow: 0 8px 32px rgba(45, 27, 26, 0.12);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF5F7 0%, #FEFCFB 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            background: white;
+            padding: 48px 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 420px;
+            width: 100%;
+        }
+        .login-container .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .login-container .logo i {
+            font-size: 48px;
+            color: var(--color-primary);
+        }
+        .login-container .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--color-dark);
+            margin-top: 8px;
+        }
+        .login-container .logo p {
+            color: #8B7A78;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-dark);
+            margin-bottom: 6px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #EDE4E2;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(217, 119, 142, 0.12);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-login:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(217, 119, 142, 0.30);
+        }
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
+        .alert.error {
+            display: block;
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 1px solid #FECACA;
+        }
+        .alert.success {
+            display: block;
+            background: #D1FAE5;
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #8B7A78;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+        /* 🔐 INDICE SUPPRIMÉ - Le mot de passe n'est plus affiché */
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-cake-candles"></i>
+            <h1>Sweet Cake</h1>
+            <p>Espace Administration</p>
+        </div>
+
+        <div class="alert" id="alert"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="Entrez le mot de passe admin" required />
+                <!-- 🔐 L'indice du mot de passe a été supprimé -->
+            </div>
+            <button type="submit" class="btn-login" id="loginBtn">
+                <i class="fas fa-lock"></i> Se connecter
+            </button>
+        </form>
+
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Retour au site
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const alert = document.getElementById('alert');
+            
+            // Reset alert
+            alert.className = 'alert';
+            alert.textContent = '';
+            
+            if (!password) {
+                alert.className = 'alert error';
+                alert.textContent = '❌ Veuillez entrer le mot de passe';
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Stocker le token
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminExpires', Date.now() + 3600000); // 1 heure
+                    
+                    alert.className = 'alert success';
+                    alert.textContent = '✅ Connexion réussie ! Redirection...';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1000);
+                } else {
+                    alert.className = 'alert error';
+                    alert.textContent = '❌ ' + data.message;
+                }
+            } catch (error) {
+                alert.className = 'alert error';
+                alert.textContent = '❌ Erreur de connexion au serveur';
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> Se connecter';
+            }
+        });
+    </script>
+</body>
+</html>
