@@ -133,7 +133,6 @@
         .back-link:hover {
             color: var(--color-primary);
         }
-        /* 🔐 INDICE SUPPRIMÉ - Le mot de passe n'est plus affiché */
     </style>
 </head>
 <body>
@@ -150,7 +149,7 @@
             <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" placeholder="Entrez le mot de passe admin" required />
-                <!-- 🔐 L'indice du mot de passe a été supprimé -->
+                <!--  L'indice du mot de passe a été supprimé -->
             </div>
             <button type="submit" class="btn-login" id="loginBtn">
                 <i class="fas fa-lock"></i> Se connecter
@@ -176,7 +175,7 @@
             
             if (!password) {
                 alert.className = 'alert error';
-                alert.textContent = '❌ Veuillez entrer le mot de passe';
+                alert.textContent = ' Veuillez entrer le mot de passe';
                 return;
             }
             
@@ -198,18 +197,18 @@
                     localStorage.setItem('adminExpires', Date.now() + 3600000); // 1 heure
                     
                     alert.className = 'alert success';
-                    alert.textContent = '✅ Connexion réussie ! Redirection...';
+                    alert.textContent = ' Connexion réussie ! Redirection...';
                     
                     setTimeout(() => {
                         window.location.href = 'admin-dashboard.html';
                     }, 1000);
                 } else {
                     alert.className = 'alert error';
-                    alert.textContent = '❌ ' + data.message;
+                    alert.textContent = ' ' + data.message;
                 }
             } catch (error) {
                 alert.className = 'alert error';
-                alert.textContent = '❌ Erreur de connexion au serveur';
+                alert.textContent = ' Erreur de connexion au serveur';
                 console.error(error);
             } finally {
                 btn.disabled = false;
